@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+
+# this scrpts echos bad at 4 and good at 8
+
+x=1
+while [ $x -le 10 ]
+do
+    if [ $x -eq 4 ]
+    then
+        echo "bad luck"
+    elif [ $x -eq 8 ]
+    then
+        echo "good luck"
+    else
+        echo "Best School"
+    fi
+    ((x++))
+done

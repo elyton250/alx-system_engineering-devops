@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+
+# this displays the time
+
+h=0
+m=1
+
+while [ $h -le 12 ]
+do
+    echo "hour: $h"
+    while [ $m -le 59 ]
+    do
+        echo "$m"
+        ((m++))
+    done
+    ((h++))
+    m=1
+done

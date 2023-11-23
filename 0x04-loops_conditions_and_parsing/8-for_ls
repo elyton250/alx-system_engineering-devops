@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+
+# this is creates a list of directories
+
+dir=$(ls)
+for d in $dir
+do
+    cut -d'-' -f2 <<< "$d"
+done
