@@ -1,18 +1,22 @@
 #!/usr/bin/env bash
-#this prints fizz buzz
+# a Bash script that displays numbers from 1 to 100.
+# Displays FizzBuzz when the number is a multiple of 3 and 5
+# Displays Fizz when the number is multiple of 3
+# Displays Buzz when the number is a multiple of 5
+# Otherwise, displays the number, In a list format
 
-x=1
-
-while [ $x -le 100 ]
+for i in {1..100}
 do
-    if [ $((x % 3)) -eq 0 ]; then
-        echo "Fizz"
-    elif [ $((x % 5)) -eq 0 ]; then
-        echo "Buzz"
-    elif [ $((x % 3)) -eq 0 ] && [ $((x % 5)) -eq 0 ]; then
-        echo "FizzBuzz"
-    else
-        echo "$x"
-    fi
-    ((x++))
+if ((i % 15 == 0))
+    then
+    echo "FizzBuzz"
+elif ((i % 5 == 0))
+    then
+    echo "Buzz"
+elif (( i % 3 == 0))
+    then
+    echo "Fizz"
+else
+    echo "$i"
+fi
 done

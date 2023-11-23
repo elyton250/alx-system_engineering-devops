@@ -1,8 +1,7 @@
 #!/usr/bin/env bash
-#this is creates a list of directories
+# print file names without the number prefix
 
-dir=$(ls)
-for d in $dir
+for file_name in *
 do
-    cut -d'-' -f2 <<< "$d"
+	echo "$file_name" | cut -d "-" -f2-
 done
