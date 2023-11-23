@@ -1,6 +1,5 @@
 #!/usr/bin/env bash
-
-# this displays the time
+#this displays the time
 
 h=0
 m=1

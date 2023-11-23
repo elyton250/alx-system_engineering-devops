@@ -1,5 +1,4 @@
 #!/usr/bin/env bash
-
 #this script prints counrties bad luck numbers
 
 x=1

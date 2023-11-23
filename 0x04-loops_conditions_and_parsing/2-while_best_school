@@ -1,6 +1,5 @@
 #!/usr/bin/env bash
-
-# This prints school 10 times using while loops
+#This prints school 10 times using while loops
 
 x=1
 

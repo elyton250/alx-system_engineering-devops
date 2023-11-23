@@ -1,6 +1,5 @@
 #!/usr/bin/env bash
-
-# this is creates a list of directories
+#this is creates a list of directories
 
 dir=$(ls)
 for d in $dir

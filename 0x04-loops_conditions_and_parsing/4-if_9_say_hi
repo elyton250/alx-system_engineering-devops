@@ -1,6 +1,5 @@
 #!/usr/bin/env bash
-
-# this displays hi at the 9th iteration
+#this displays hi at the 9th iteration
 
 x=1
 while [ $x -le 10 ]

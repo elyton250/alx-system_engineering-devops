@@ -1,6 +1,5 @@
 #!/usr/bin/env bash
-
-# this prints fizz buzz
+#this prints fizz buzz
 
 x=1
 
