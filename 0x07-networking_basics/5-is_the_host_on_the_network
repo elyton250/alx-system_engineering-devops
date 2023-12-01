@@ -1,15 +1,9 @@
 #!/usr/bin/env bash
+# Ping an IP address passed as an argument
 
-x=1
-
-while [ $x -le 5 ]; do
-    if [ "$#" -eq 0 ]; then
+if [ -z "$1" ]
+then
         echo "Usage: 5-is_the_host_on_the_network {IP_ADDRESS}"
-        exit 1
-    else
-        ping "$1"
-    fi
-
-    x=$((x + 1))
-done
-
+else
+    ping -c 5 "$1"
+fi
