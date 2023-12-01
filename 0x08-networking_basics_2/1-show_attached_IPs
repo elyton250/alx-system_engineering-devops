@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+#this for the ip4 display
+
+ifconfig | grep "inet addr" | awk '{print $2}' | cut -d':' -f2
