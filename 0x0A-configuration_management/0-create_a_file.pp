@@ -1,7 +1,9 @@
-file { '/tmp/school':
-    ensure  => file,
-    owner   => 'www-data',
-    group   => 'www-data',
-    mode    => '0744',
-    content => 'I love Puppet';
+# task 0 on puppet
+
+file { '/tmp/holberton':
+  ensure  => 'present',
+  content => 'I love Puppet',
+  owner   => 'www-data',
+  group   => 'www-data',
+  mode    => '0744'
 }
