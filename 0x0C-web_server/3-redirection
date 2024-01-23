@@ -1,0 +1,35 @@
+#!/bin/bash
+
+# Update package list
+apt-get -y update
+
+# Install Nginx
+apt-get -y install nginx
+
+# Create a simple HTML page
+echo 'Hello World!' > /var/www/html/index.html
+
+# Configure Nginx to return the Hello World page
+cat <<EOL > /etc/nginx/sites-available/default
+server {
+    listen 80 default_server;
+    listen [::]:80 default_server;
+
+    root /var/www/html;
+    index index.html index.htm index.nginx-debian.html;
+
+    server_name _;
+
+    location / {
+        try_files \$uri \$uri/ =404;
+    }
+
+    location = / {
+        return 200 "Hello World!";
+    }
+}
+EOL
+
+# Restart Nginx
+service nginx restart
+
