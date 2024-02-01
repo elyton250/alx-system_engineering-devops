@@ -1,0 +1,21 @@
+#!/usr/bin/env bash
+# gets the info from a domain
+
+domain_information () {
+    local domain="$1"
+    local subdomain="$2"
+
+    if [ -z "$subdomain" ]; then
+        subdomains=("www" "lb-01" "web-01" "web-02")
+    else
+        subdomains=("$subdomain")
+    fi
+
+    for sub in "${subdomains[@]}"; do
+        line=$line=$(dig "$sub"."$domain" | grep -A1 'ANSWER SECTION:' | tr '\t' '\n' | tail -2 | tr '\n' ' ')
+        echo "$sub $line" | awk '{print "The subdomain " $1 " is a " substr($2, 2) " record and points to " $3}'
+    done
+}
+domain="$1"
+subdomain="$2"
+domain_information "$domain" "$subdomain"
