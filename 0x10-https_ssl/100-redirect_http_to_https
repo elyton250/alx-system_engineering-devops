@@ -1,0 +1,34 @@
+global
+    log     /dev/log local0
+    maxconn 2048
+    user    haproxy
+    group   haproxy
+    tune.ssl.default-dh-param 2048
+
+defaults
+    log     global
+    mode    http
+    option  httplog
+    option  dontlognull
+    retries 3
+    option  redispatch
+    timeout connect  5000
+    timeout client  10000
+    timeout server  10000
+    option  forwardfor
+    option  http-server-close
+
+frontend http
+    bind   0.0.0.0:80
+    acl is_ssl_fc ssl_fc
+    http-request redirect scheme https code 301 if !is_ssl_fc
+    default_backend Wbackend
+frontend https
+    bind   0.0.0.0:443 ssl crt /etc/letsencrypt/live/www.elyserw.tech/fullchain.pem
+    default_backend Wbackend
+
+backend Wbackend
+    balance  roundrobin
+    server 462098-web-01 54.160.110.173:80 check
+    server 462098-web-02 54.236.33.222:80 check
+
