@@ -1,19 +1,18 @@
 #!/usr/bin/env bash
 # gets the info from a domain
 
-domain_information () {
-
-    if [ -z "$subdomain" ]; then
-        subdomains=("www" "lb-01" "web-01" "web-02")
-    else
-        subdomains=("$subdomain")
-    fi
-
-    for sub in "${subdomains[@]}"; do
-        line=$(dig "$sub"."$domain"| grep -A1 'ANSWER SECTION:' | tr '\t' '\n' | tail -2 | tr '\n' ' ')
-        echo "$sub $line" | awk '{print "The subdomain " $1 " is a " substr($2, 1) " record and points to " $3}'
-    done
+domain_info () {
+	dig "$2"."$1" | awk '/ANSWER SECTION:/ {getline; print}' | awk -v subdomain="$2" \
+	'{ print "The subdomain " subdomain " is a " $4 " record and points to " $5}'
 }
-domain="$1"
-subdomain="$2"
-domain_information "$domain" "$subdomain"
+
+if [ "$#" == 1 ]
+then
+  domain_info "$1" "www"
+  domain_info "$1" "lb-01"
+  domain_info "$1" "web-01"
+  domain_info "$1" "web-02"
+elif [ "$#" == 2 ]
+then
+  domain_info "$1" "$2"
+fi
