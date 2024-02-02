@@ -18,23 +18,17 @@ defaults
     option  forwardfor
     option  http-server-close
 
-frontend www-http
+frontend http
     bind   0.0.0.0:80
-    reqadd X-Forwarded-Proto:\ http
-    default_backend www-backend
+    acl is_ssl_fc ssl_fc
+    http-request redirect scheme https code 301 if !is_ssl_fc
+    default_backend Wbackend
+frontend https
+    bind   0.0.0.0:443 ssl crt /etc/letsencrypt/live/www.elyserw.tech/fullchain.pem
+    default_backend Wbackend
 
-frontend www-https
-    bind   0.0.0.0:443 ssl crt /etc/haproxy/certs/www.bdbnb.site.pem
-    reqadd X-Forwarded-Proto:\ https
-    acl    letsencrypt-acl path_beg /.well-known/acme-challenge/
-    use_backend letsencrypt-backend if letsencrypt-acl
-    default_backend www-backend
-
-backend www-backend
+backend Wbackend
     balance  roundrobin
-    redirect scheme https if !{ ssl_fc }
     server 462098-web-01 54.160.110.173:80 check
     server 462098-web-02 54.236.33.222:80 check
 
-backend letsencrypt-backend
-    server letsencrypt 127.0.0.1:54321
