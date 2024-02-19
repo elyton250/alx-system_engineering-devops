@@ -22,7 +22,7 @@ if __name__ == '__main__':
             tasks_completed += 1
 
     print(
-        f"Employee {user_data['name']} is done with tasks "
+        f"Employee {user_data['name']} is done with tasks"
         f"({tasks_completed}/{total_tasks}):")
 
     for task in todos.json():
