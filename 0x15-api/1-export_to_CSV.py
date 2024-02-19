@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 """Requesting a fake API and exporting data in CSV format."""
-import requests
 import csv
+import requests
 from sys import argv
 
 
