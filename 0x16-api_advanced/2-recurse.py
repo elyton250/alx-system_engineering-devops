@@ -1,17 +1,17 @@
-#!/usr/bin/pyhton3
+#!/usr/bin/python3
 """This is the module that uses recurse"""
 import requests
 
+
 def recurse(subreddit, hot_list=None):
     """this uses recurse"""
- 
+
     if hot_list is None:
         hot_list = []
 
     url = f'https://www.reddit.com/r/{subreddit}/hot.json'
     headers = {"User-Agent": "My-User-Agent"}
     response = requests.get(url, headers=headers, allow_redirects=False)
-    
     if response.status_code >= 300:
         return None
 
