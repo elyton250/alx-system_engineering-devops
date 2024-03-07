@@ -1,15 +1,17 @@
 #!/usr/bin/python3
-"""this module rewuests from reddit api"""
+"""Function that queries the Reddit API"""
+
+import requests
 
 
 def number_of_subscribers(subreddit):
-    """this function obtains information from a subreddit"""
-    import requests
+    """return subs"""
+    req = requests.get(
+        "https://www.reddit.com/r/{}/about.json".format(subreddit),
+        headers={"User-Agent": "Custom"},
+    )
 
-    info = requests.get(
-        f'https://www.reddit.com/r/{subreddit}/about.json', headers={
-            "User-Agent": "My-User-Agent"}, allow_redirects=False)
-
-    if info.status_code >= 300:
+    if req.status_code == 200:
+        return req.json().get("data").get("subscribers")
+    else:
         return 0
-    return info.json().get('data').get('subscribers')
