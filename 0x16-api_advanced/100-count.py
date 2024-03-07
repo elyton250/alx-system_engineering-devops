@@ -4,7 +4,6 @@ from collections import Counter
 import requests
 
 
-
 def count_words(subreddit, word_list, counts=None):
     """this one is a recurse that counts"""
     if counts is None:
