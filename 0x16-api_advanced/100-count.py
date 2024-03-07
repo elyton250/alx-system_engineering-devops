@@ -1,7 +1,8 @@
 #!/usr/bin/python3
 """this one counts """
-import requests
 from collections import Counter
+import requests
+
 
 
 def count_words(subreddit, word_list, counts=None):
